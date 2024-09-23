@@ -66,5 +66,22 @@ function calculateDepartmentSalary(department) {
         totalSalary += calculateEmployeeSalary(employee);
     });
 
+    function calculateCompanySalary(company) {
+    let totalCompanySalary = 0;
+
+    company.departments.forEach(department => {
+        const departmentSalary = calculateDepartmentSalary(department);
+        console.log(`Total salary for ${department.departmentName}: $${departmentSalary}`);
+        totalCompanySalary += departmentSalary;
+    });
+
+    console.log(`Total salary for the entire company: $${totalCompanySalary}`);
+    return totalCompanySalary;
+}
+
+// Test the functions
+calculateCompanySalary(company);
+
+
     return totalSalary;
 }
