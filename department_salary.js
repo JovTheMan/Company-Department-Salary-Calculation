@@ -50,3 +50,21 @@ const company = {
         }
     ]
 };
+
+function calculateDepartmentSalary(department) {
+    let totalSalary = 0;
+    
+    function calculateEmployeeSalary(employee) {
+        let salary = employee.salary;
+        employee.subordinates.forEach(subordinate => {
+            salary += calculateEmployeeSalary(subordinate);
+        });
+        return salary;
+    }
+    
+    department.employees.forEach(employee => {
+        totalSalary += calculateEmployeeSalary(employee);
+    });
+
+    return totalSalary;
+}
